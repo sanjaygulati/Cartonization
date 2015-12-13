@@ -15,7 +15,7 @@ namespace Cartonization.Business
 
         public Dimension Dimension { get; private set; }
 
-        public double Volume
+        public decimal Volume
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double SurfaceArea
+        public decimal SurfaceArea
         {
             get
             {
@@ -31,7 +31,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Width
+        public decimal Width
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Height
+        public decimal Height
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Length
+        public decimal Length
         {
             get
             {

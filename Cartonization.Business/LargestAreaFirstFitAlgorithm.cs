@@ -123,7 +123,7 @@ namespace Cartonization.Business
                         length: remainingSpace.Length,
                         height: remainingSpace.Height 
                 )),
-                level);
+                Decimal.Add( level, 0.1m));
 
             List<Space> availableSpaces = new List<Space>();
 
@@ -157,7 +157,7 @@ namespace Cartonization.Business
         }
 
 
-        private void FillSpaceByHeight(ref List<Product> productsToPack, Space remainingSpace, int level)
+        private void FillSpaceByHeight(ref List<Product> productsToPack, Space remainingSpace, decimal level)
         {
             if (productsToPack.Count == 0) return;
 

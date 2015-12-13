@@ -8,27 +8,27 @@ namespace Cartonization.Business
 {
     public class Dimension : IComparable<Dimension>
     {
-        public Dimension(double width, double length, double height)
+        public Dimension(decimal width, decimal length, decimal height)
         {
             Length = length;
             Height = height;    
             Width = width;
         }
 
-        public double Length{get;private set;}
+        public decimal Length{get;private set;}
 
-        public double Width {get; private set;}
+        public decimal Width {get; private set;}
 
-        public double Height { get; private set; }
+        public decimal Height { get; private set; }
 
         public Dimension Clone()
         {
             return (Dimension)this.MemberwiseClone();
         }
 
-        private List<Double> ToList()
+        private List<decimal> ToList()
         {
-            return new List<double> { Width, Length, Height };
+            return new List<decimal> { Width, Length, Height };
         }
 
         public IEnumerable<Dimension> RotationAngles()
@@ -39,7 +39,7 @@ namespace Cartonization.Business
 
             rotations.Add(d);
 
-            List<double> dimensions = this.ToList();
+            List<decimal> dimensions = this.ToList();
 
             for (int i = 1; i < dimensions.Count; i++)
             {
@@ -57,25 +57,25 @@ namespace Cartonization.Business
        
         public Dimension TwoDRotate()
         {
-            List<double> dimensions = Swap(this.ToList(), 0, 1);
+            List<decimal> dimensions = Swap(this.ToList(), 0, 1);
 
             return new Dimension(dimensions[0], dimensions[1], dimensions[2]);
         }
 
         private Dimension ThreeDRotate(Dimension d)
         {
-            List<double> dimensions = d.ToList();
+            List<decimal> dimensions = d.ToList();
 
-            double first = dimensions.First();
+            decimal first = dimensions.First();
             dimensions.RemoveAt(0);
             dimensions.Add(first);
 
             return new Dimension(dimensions[0], dimensions[1], dimensions[2]);
         }
 
-        private List<double> Swap(List<double> dimension, int index1, int index2)
+        private List<decimal> Swap(List<decimal> dimension, int index1, int index2)
         {
-            double temp = dimension[index1];
+            decimal temp = dimension[index1];
             dimension[index1] = dimension[index2];
             dimension[index2] = temp;
             return dimension;

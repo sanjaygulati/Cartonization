@@ -17,10 +17,10 @@ namespace Cartonization.ConsoleApp
                 new Product("1",15, 10, 12),
                 new Product("2",10, 22, 8),
                 new Product("3",33, 33, 2),
-                //new Product("4",15, 13, 36),
-                //new Product("5", 19, 17, 24),
-                new Product("6", 5, 10, 2),
-                new Product("7", 10, 2, 8),
+                new Product("4",15, 13, 36),
+                new Product("5", 19, 17, 24),
+                //new Product("6", 5, 10, 2),
+                //new Product("7", 10, 2, 8),
                 new Product("8", 3, 1, 2),
                 new Product("9", 5, 3, 6),
                 new Product("10", 9, 7, 4),
@@ -55,7 +55,7 @@ namespace Cartonization.ConsoleApp
             {
                 new Carton("carton1", 10, 16, 23),
                 new Carton("carton2", 25, 17, 40),
-                new Carton("carton3", 16, 23, 30.5),
+                new Carton("carton3", 16, 23, 30.5m),
                 new Carton("carton4", 26, 27, 32),
                 new Carton("carton5", 27, 32, 47),
                 

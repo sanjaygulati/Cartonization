@@ -8,10 +8,10 @@ namespace Cartonization.Business
 {
     public class Product
     {
-        public Product(string id ,double height, double length, double width)
+        public Product(string id ,decimal height, decimal length, decimal width)
         {
-            double[] array = new[] {height, width, length};
-            double[] result = array.OrderByDescending(d => d).ToArray();
+            decimal[] array = new[] {height, width, length};
+            decimal[] result = array.OrderByDescending(d => d).ToArray();
             
             Space = new Space(new Dimension( result[0], result[1], result[2]));
             
@@ -22,7 +22,7 @@ namespace Cartonization.Business
 
         public Space Space { get; private set; }
 
-        public double Width
+        public decimal Width
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Height
+        public decimal Height
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Length
+        public decimal Length
         {
             get
             {

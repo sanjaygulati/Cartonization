@@ -10,22 +10,22 @@ namespace Cartonization.Business
     public class Carton
     {
         private List<Product> _productsInCarton;
-        private Dictionary<int, List<Product>> _layerdProducts;
-        private double _usedHeight;
+        private Dictionary<decimal, List<Product>> _layerdProducts;
+        private decimal _usedHeight;
 
-        public Carton(string id, double height, double length, double width)
+        public Carton(string id, decimal height, decimal length, decimal width)
         {
             Id = id;
             Space = new Space(new Dimension(width, length, height));
             _productsInCarton = new List<Product>();
-            _layerdProducts = new Dictionary<int, List<Product>>();
+            _layerdProducts = new Dictionary<decimal, List<Product>>();
         }
 
         public string Id { get; private set; }
 
         public Space Space { get; private set; }
 
-        public double Width
+        public decimal Width
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Height
+        public decimal Height
         {
             get
             {
@@ -41,7 +41,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double Length
+        public decimal Length
         {
             get
             {
@@ -57,7 +57,7 @@ namespace Cartonization.Business
             }
         }
 
-        public double PackedVolume 
+        public decimal PackedVolume 
         {
             get 
             {
@@ -65,14 +65,14 @@ namespace Cartonization.Business
             }
         }
 
-        public double WasteVolume 
+        public decimal WasteVolume 
         {
             get {
                 return Space.Volume - PackedVolume;
             }
         }
 
-        public Dictionary<int, List<Product>> LayeredProducts
+        public Dictionary<decimal, List<Product>> LayeredProducts
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Cartonization.Business
             }
         }
 
-        private double LevelSurfaceArea( int level )
+        private decimal LevelSurfaceArea( decimal level )
         {
             if (_layerdProducts.ContainsKey(level))
             {
@@ -89,7 +89,7 @@ namespace Cartonization.Business
             return 0;
         }
 
-        public void Add(int level, Product product)
+        public void Add(decimal level, Product product)
         {
             if (_layerdProducts.ContainsKey(level))
             {
@@ -107,7 +107,7 @@ namespace Cartonization.Business
             _productsInCarton.Add(product);
         }
 
-        public bool CanAddLevel(double height)
+        public bool CanAddLevel(decimal height)
         {
             return _usedHeight + height <= Space.Dimension.Height;
         }
@@ -128,11 +128,11 @@ namespace Cartonization.Business
         {
             StringBuilder stringBuilder = new System.Text.StringBuilder();
 
-            double surfaceArea = Width * Length;
+            decimal surfaceArea = Width * Length;
 
-            foreach(int level in LayeredProducts.Keys)
+            foreach(decimal level in LayeredProducts.Keys)
             {
-                stringBuilder.AppendFormat("\nlevelId: {0}, surfaceAreaWaste: {1}", level, surfaceArea - LevelSurfaceArea(level));
+                stringBuilder.AppendFormat("\nlevelId: {0}, SurfaceAreaUsed {1} , SurfaceAreaWaste: {2}", level, LevelSurfaceArea(level), surfaceArea - LevelSurfaceArea(level));
             }
 
             return stringBuilder.ToString();
