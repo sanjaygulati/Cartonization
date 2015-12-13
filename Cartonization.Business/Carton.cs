@@ -109,7 +109,13 @@ namespace Cartonization.Business
                 List<Product> products = new List<Product>();
                 products.Add(product);
                 _layerdProducts.Add(level, products);
-                _usedHeight = _usedHeight + product.Space.Dimension.Height;
+
+                int result = 0;
+                // only increment height if its a integer level.
+                if (int.TryParse(level.ToString(), out result))
+                {
+                    _usedHeight = _usedHeight + product.Space.Dimension.Height;
+                }
             }
 
             _productsInCarton.Add(product);

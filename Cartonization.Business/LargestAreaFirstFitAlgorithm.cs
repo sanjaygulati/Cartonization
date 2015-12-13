@@ -32,14 +32,17 @@ namespace Cartonization.Business
             // Check if a new level can be added.
             if (!_carton.CanAddProductThatWillIncreaseHeight(biggestProduct))
             {
-                FillSpace(
-                ref productsToPack,
-                new Space(new Dimension(
-                        width: _carton.Width,
-                        length: _carton.Length,
-                        height: _carton.Height - _carton.UsedHeight
-                )),
-                level);
+                if (_carton.Height - _carton.UsedHeight > 0)
+                {
+                    FillSpace(
+                    ref productsToPack,
+                    new Space(new Dimension(
+                            width: _carton.Width,
+                            length: _carton.Length,
+                            height: _carton.Height - _carton.UsedHeight
+                    )),
+                    level);
+                }
                 
                 return;
             }
@@ -133,7 +136,7 @@ namespace Cartonization.Business
                 new Space(new Dimension(
                         width: remainingSpace.Width,
                         length: remainingSpace.Length,
-                        height: remainingSpace.Height - fittingProduct.Length
+                        height: remainingSpace.Height - fittingProduct.Height
                 )),
                 Decimal.Add( level, 0.1m));
 

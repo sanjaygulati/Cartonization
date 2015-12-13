@@ -19,7 +19,7 @@ namespace Cartonization.ConsoleApp
                 //new Product("3",33, 33, 2),
                 //new Product("4",15, 13, 36),
                 //new Product("5", 19, 17, 24),
-                new Product("6", 5, 10, 2),
+                //new Product("6", 5, 10, 2),
                 new Product("7", 10, 2, 8),
                 new Product("8", 3, 1, 2),
                 new Product("9", 5, 3, 6),
