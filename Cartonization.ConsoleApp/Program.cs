@@ -33,31 +33,32 @@ namespace Cartonization.ConsoleApp
                 new Product("10_7", 9, 7, 4),
                 new Product("10_8", 11, 7, 4),
                 new Product("10_9", 9, 7, 4),
-                //new Product("10_10", 9, 7, 4),
-                //new Product("10_11", 9, 7, 4),
-                //new Product("10_12", 9, 7, 4),
-                //new Product("10_13", 9, 7, 4),
-                //new Product("10_14", 9, 7, 4),
-                //new Product("10_15", 9, 7, 4),
-                //new Product("10_16", 9, 7, 4),
-                //new Product("10_17", 9, 7, 4),
-                //new Product("10_18", 9, 7, 4),
-                //new Product("10_19", 9, 7, 4),
-                //new Product("10_20", 9, 7, 4),
-                //new Product("10_21", 9, 7, 4),
-                //new Product("10_22", 9, 7, 4),
-                //new Product("10_23", 9, 7, 4),
-                //new Product("10_24", 9, 7, 4)
+                new Product("10_10", 9, 7, 4),
+                new Product("10_11", 9, 7, 4),
+                new Product("10_12", 9, 7, 4),
+                new Product("10_13", 9, 7, 4),
+                new Product("10_14", 9, 7, 4),
+                new Product("10_15", 9, 7, 4),
+                new Product("10_16", 9, 7, 4),
+                new Product("10_17", 9, 7, 4),
+                new Product("10_18", 9, 7, 4),
+                new Product("10_19", 9, 7, 4),
+                new Product("10_20", 9, 7, 4),
+                new Product("10_21", 9, 7, 4),
+                new Product("10_22", 9, 7, 4),
+                new Product("10_23", 9, 7, 4),
+                new Product("10_24", 9, 7, 4)
 
             };
 
             List<Carton> availbaleCartons = new List<Carton>()
             {
                 new Carton("carton1", 10, 16, 23),
-                new Carton("carton2", 26, 27, 32),
-                new Carton("carton3", 27, 32, 47),
-                new Carton("carton4", 16, 23, 30.5),
-                new Carton("carton5", 25, 17, 40)
+                new Carton("carton2", 25, 17, 40),
+                new Carton("carton3", 16, 23, 30.5),
+                new Carton("carton4", 26, 27, 32),
+                new Carton("carton5", 27, 32, 47),
+                
             };
 
             var packer = new Packer(availbaleCartons);

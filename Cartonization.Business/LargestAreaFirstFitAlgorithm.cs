@@ -116,6 +116,15 @@ namespace Cartonization.Business
 
             productsToPack.RemoveAll(p => p.ProductId == fittingProduct.ProductId);
 
+            FillSpaceByHeight(
+                ref productsToPack,
+                new Space(new Dimension(
+                        width: remainingSpace.Width,
+                        length: remainingSpace.Length,
+                        height: remainingSpace.Height 
+                )),
+                level);
+
             List<Space> availableSpaces = new List<Space>();
 
             if (remainingSpace.Length - fittingProduct.Length > 0)
@@ -135,7 +144,7 @@ namespace Cartonization.Business
                     new Dimension(
                         width: remainingSpace.Width - fittingProduct.Width,
                         length: fittingProduct.Length,
-                        height: remainingSpace.Height
+                        height: remainingSpace.Height - fittingProduct.Height
                         )
                     ));
             }
@@ -143,6 +152,53 @@ namespace Cartonization.Business
             foreach (Space space in availableSpaces)
             {
                 FillSpace(ref productsToPack, space, level);
+            }
+
+        }
+
+
+        private void FillSpaceByHeight(ref List<Product> productsToPack, Space remainingSpace, int level)
+        {
+            if (productsToPack.Count == 0) return;
+
+            productsToPack = productsToPack.OrderByDescending(p => p.Space.Volume).ToList();
+
+            Product fittingProduct = null;
+
+            foreach (Product product in productsToPack)
+            {
+                // Skip products that have a higher volume than target space.
+                if (product.Space.Volume >= remainingSpace.Volume) continue;
+
+                if (!CanFitProductWithThreeDRotation(product, remainingSpace)) continue;
+
+                fittingProduct = product;
+
+                break;
+            }
+
+            if (fittingProduct == null) return;
+
+            _carton.Add(level, fittingProduct);
+
+            productsToPack.RemoveAll(p => p.ProductId == fittingProduct.ProductId);
+
+            List<Space> availableSpaces = new List<Space>();
+
+            if (remainingSpace.Height - fittingProduct.Height > 0)
+            {
+                availableSpaces.Add(new Space(
+                    new Dimension(
+                        width: remainingSpace.Width,
+                        length: remainingSpace.Length,
+                        height: remainingSpace.Height - fittingProduct.Height
+                        )
+                    ));
+            }
+
+            foreach (Space space in availableSpaces)
+            {
+                FillSpaceByHeight(ref productsToPack, space, level);
             }
 
         }
