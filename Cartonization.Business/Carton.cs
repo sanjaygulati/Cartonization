@@ -49,6 +49,14 @@ namespace Cartonization.Business
             }
         }
 
+        public decimal UsedHeight
+        {
+            get
+            {
+                return _usedHeight;
+            }
+        }
+
         public ReadOnlyCollection<Product> ProductsInCarton 
         { 
             get 
@@ -107,9 +115,9 @@ namespace Cartonization.Business
             _productsInCarton.Add(product);
         }
 
-        public bool CanAddLevel(decimal height)
+        public bool CanAddProductThatWillIncreaseHeight(Product product)
         {
-            return _usedHeight + height <= Space.Dimension.Height;
+            return _usedHeight + product.Height <= Space.Dimension.Height;
         }
 
 

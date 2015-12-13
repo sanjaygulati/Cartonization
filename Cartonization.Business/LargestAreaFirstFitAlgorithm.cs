@@ -30,7 +30,19 @@ namespace Cartonization.Business
             Product biggestProduct = productsToPack.First();
 
             // Check if a new level can be added.
-            if (!_carton.CanAddLevel(biggestProduct.Space.Dimension.Height)) { return; }
+            if (!_carton.CanAddProductThatWillIncreaseHeight(biggestProduct))
+            {
+                FillSpace(
+                ref productsToPack,
+                new Space(new Dimension(
+                        width: _carton.Width,
+                        length: _carton.Length,
+                        height: _carton.Height - _carton.UsedHeight
+                )),
+                level);
+                
+                return;
+            }
 
             if (biggestProduct.CanRotateTwoDimensional(_carton.Space))
             {
@@ -121,7 +133,7 @@ namespace Cartonization.Business
                 new Space(new Dimension(
                         width: remainingSpace.Width,
                         length: remainingSpace.Length,
-                        height: remainingSpace.Height 
+                        height: remainingSpace.Height - fittingProduct.Length
                 )),
                 Decimal.Add( level, 0.1m));
 
@@ -144,7 +156,7 @@ namespace Cartonization.Business
                     new Dimension(
                         width: remainingSpace.Width - fittingProduct.Width,
                         length: fittingProduct.Length,
-                        height: remainingSpace.Height - fittingProduct.Height
+                        height: remainingSpace.Height
                         )
                     ));
             }
