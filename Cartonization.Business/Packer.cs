@@ -19,7 +19,7 @@ namespace Cartonization.Business
 
         private IEnumerable<Carton> FilterCartons(List<Product> productsToPack)
         {
-            Product largestProduct = productsToPack.OrderByDescending(p => p.Space.Volume).First();
+            Product largestProduct = productsToPack.OrderByDescending(p => p.Space.SurfaceArea).First();
 
             IEnumerable<Carton> cartons = _availableCartons.Where(c =>
                     c.Width >= largestProduct.Width
