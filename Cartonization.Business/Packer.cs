@@ -75,6 +75,8 @@ namespace Cartonization.Business
                 //TODO: build factory to return the algorithm.
                 LargestAreaFirstFitAlgorithm algorithm = new LargestAreaFirstFitAlgorithm(carton);
 
+                productsToPack = productsToPack.Select(p => new Product(p.ProductId, p.Height, p.Length, p.Width)).ToList();
+
                 algorithm.Pack(productsToPack);
 
                 if (productsToPack.Except(carton.ProductsInCarton).Count() == 0)

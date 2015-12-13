@@ -32,6 +32,11 @@ namespace Cartonization.Business
             // Check if a new level can be added.
             if (!_carton.CanAddLevel(biggestProduct.Space.Dimension.Height)) { return; }
 
+            if (biggestProduct.CanRotateTwoDimensional(_carton.Space))
+            {
+                biggestProduct.Rotate2D();
+            }
+
             _carton.Add(level, biggestProduct);
 
             productsToPack.RemoveAll(p=> p.ProductId == biggestProduct.ProductId);
@@ -43,11 +48,6 @@ namespace Cartonization.Business
             else 
             {
                 List<Space> availableSpaces = new List<Space>();
-
-                if (biggestProduct.CanRotateTwoDimensional(_carton.Space))
-                {
-                    biggestProduct.Rotate2D();
-                }
 
                 if (_carton.Length - biggestProduct.Length > 0)
                 {
