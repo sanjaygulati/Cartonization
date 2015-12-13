@@ -80,6 +80,15 @@ namespace Cartonization.Business
             }
         }
 
+        private double LevelSurfaceArea( int level )
+        {
+            if (_layerdProducts.ContainsKey(level))
+            {
+                return _layerdProducts[level].Sum(p => p.Space.SurfaceArea);
+            }
+            return 0;
+        }
+
         public void Add(int level, Product product)
         {
             if (_layerdProducts.ContainsKey(level))
@@ -106,7 +115,27 @@ namespace Cartonization.Business
 
         public override string ToString()
         {
-            return "CartoonID: " + Id + ",Layers packed: " + LayeredProducts.Keys.Count + ",Products Count: " + ProductsInCarton.Count + ",Used Space: " + PackedVolume + ",WasteVolume: " + WasteVolume;
+            return "CartoonID: " + Id
+                + ",\nLayers packed: " + LayeredProducts.Keys.Count
+                + ",\nProducts Count: " + ProductsInCarton.Count
+                + ",\nUsed Space: " + PackedVolume
+                + ",\nWasteVolume: " + WasteVolume
+                + ",\nSurfaceAreaUsedPerLevel:" + SurfaceAreaUsedPerLevel();
+        }
+
+
+        private string SurfaceAreaUsedPerLevel()
+        {
+            StringBuilder stringBuilder = new System.Text.StringBuilder();
+
+            double surfaceArea = Width * Length;
+
+            foreach(int level in LayeredProducts.Keys)
+            {
+                stringBuilder.AppendFormat("\nlevelId: {0}, surfaceAreaWaste: {1}", level, surfaceArea - LevelSurfaceArea(level));
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

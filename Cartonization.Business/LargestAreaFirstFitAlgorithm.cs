@@ -44,7 +44,7 @@ namespace Cartonization.Business
             {
                 List<Space> availableSpaces = new List<Space>();
 
-                if (biggestProduct.CanRotateTwoDimentional(_carton.Space))
+                if (biggestProduct.CanRotateTwoDimensional(_carton.Space))
                 {
                     biggestProduct.Rotate2D();
                 }
@@ -55,7 +55,7 @@ namespace Cartonization.Business
                         new Dimension(
                             width: _carton.Width,
                             length: _carton.Length - biggestProduct.Length,
-                            height: _carton.Height
+                            height: biggestProduct.Height
                             )
                         ));
                 }
@@ -66,7 +66,7 @@ namespace Cartonization.Business
                         new Dimension(
                             width: _carton.Width - biggestProduct.Width,
                             length: biggestProduct.Length,
-                            height: _carton.Height
+                            height: biggestProduct.Height
                             )
                         ));
                 }
@@ -118,24 +118,24 @@ namespace Cartonization.Business
 
             List<Space> availableSpaces = new List<Space>();
 
-            if (remainingSpace.Dimension.Length - fittingProduct.Space.Dimension.Length > 0)
+            if (remainingSpace.Length - fittingProduct.Length > 0)
             {
                 availableSpaces.Add(new Space(
                     new Dimension(
-                        width: remainingSpace.Dimension.Width,
-                        length: remainingSpace.Dimension.Length - fittingProduct.Space.Dimension.Length,
-                        height: remainingSpace.Dimension.Height
+                        width: remainingSpace.Width,
+                        length: remainingSpace.Length - fittingProduct.Length,
+                        height: remainingSpace.Height
                         )
                     ));
             }
 
-            if (remainingSpace.Dimension.Width - fittingProduct.Space.Dimension.Width > 0)
+            if (remainingSpace.Width - fittingProduct.Width > 0)
             {
                 availableSpaces.Add(new Space(
                     new Dimension(
-                        width: remainingSpace.Dimension.Width - fittingProduct.Space.Dimension.Width,
-                        length: fittingProduct.Space.Dimension.Length,
-                        height: remainingSpace.Dimension.Height
+                        width: remainingSpace.Width - fittingProduct.Width,
+                        length: fittingProduct.Length,
+                        height: remainingSpace.Height
                         )
                     ));
             }
@@ -161,6 +161,7 @@ namespace Cartonization.Business
                 Space newSpace = new Space(d);
                 if (space >= newSpace)
                 {
+                    product.SetDimension(d);
                     return true;
                 }
             }

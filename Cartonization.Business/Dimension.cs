@@ -11,7 +11,7 @@ namespace Cartonization.Business
         public Dimension(double width, double length, double height)
         {
             Length = length;
-            Height = height;
+            Height = height;    
             Width = width;
         }
 

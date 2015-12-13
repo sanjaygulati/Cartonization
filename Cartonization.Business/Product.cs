@@ -52,7 +52,7 @@ namespace Cartonization.Business
             Space = new Space(newDimension);
         }
 
-        public bool CanRotateTwoDimentional( Space space )
+        public bool CanRotateTwoDimensional( Space space )
         {
             //3drotate product.
             Dimension newDimension = Space.Dimension.TwoDRotate();
@@ -62,6 +62,11 @@ namespace Cartonization.Business
                 return true;
             }
             return false;
+        }
+
+        public void SetDimension( Dimension d)
+        {
+            Space = new Space(d);
         }
 
         public override string ToString() 
