@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartonization.Business", "Cartonization.Business\Cartonization.Business.csproj", "{01CBB486-5B87-4F79-8A2C-827AC1C0DCBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartonization.ConsoleApp", "Cartonization.ConsoleApp\Cartonization.ConsoleApp.csproj", "{A3F57E00-6387-4372-94AE-B3FF2774AEB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01CBB486-5B87-4F79-8A2C-827AC1C0DCBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CBB486-5B87-4F79-8A2C-827AC1C0DCBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CBB486-5B87-4F79-8A2C-827AC1C0DCBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CBB486-5B87-4F79-8A2C-827AC1C0DCBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
