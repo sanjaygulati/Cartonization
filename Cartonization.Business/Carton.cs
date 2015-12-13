@@ -121,7 +121,7 @@ namespace Cartonization.Business
             _productsInCarton.Add(product);
         }
 
-        public bool CanAddProductThatWillIncreaseHeight(Product product)
+        public bool CanAddProductWithoutHeightOverflow(Product product)
         {
             return _usedHeight + product.Height <= Space.Dimension.Height;
         }
@@ -130,6 +130,8 @@ namespace Cartonization.Business
         public override string ToString()
         {
             return "CartoonID: " + Id
+                + ",\nCarton Height: " + Height
+                + ",\nCarton Used Height: " + UsedHeight
                 + ",\nLayers packed: " + LayeredProducts.Keys.Count
                 + ",\nProducts Count: " + ProductsInCarton.Count
                 + ",\nUsed Space: " + PackedVolume
