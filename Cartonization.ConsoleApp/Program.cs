@@ -31,7 +31,7 @@ namespace Cartonization.ConsoleApp
                 new Product("10_5", 9, 7, 4),
                 new Product("10_6", 19, 7, 4),
                 new Product("10_7", 9, 7, 4),
-                //new Product("10_8", 11, 7, 4),
+                new Product("10_8", 11, 7, 4),
                 //new Product("10_9", 9, 7, 4),
                 //new Product("10_10", 9, 7, 4),
                 //new Product("10_11", 9, 7, 4),
