@@ -134,7 +134,7 @@ namespace Cartonization.Business
                 + ",\nCarton Used Height: " + UsedHeight
                 + ",\nLayers packed: " + LayeredProducts.Keys.Count
                 + ",\nProducts Count: " + ProductsInCarton.Count
-                + ",\nUsed Space: " + PackedVolume
+                + ",\nUsed Volume: " + PackedVolume
                 + ",\nWasteVolume: " + WasteVolume
                 + ",\nSurfaceAreaUsedPerLevel:" + SurfaceAreaUsedPerLevel();
         }

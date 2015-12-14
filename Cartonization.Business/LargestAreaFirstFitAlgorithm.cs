@@ -15,7 +15,7 @@ namespace Cartonization.Business
             _carton = carton;
         }
 
-        public void Pack(List<Product> productsToPack )
+        public void Pack(List<Product> productsToPack)
         {
             PackLevel(ref productsToPack, _carton.Space);
         }
@@ -98,7 +98,7 @@ namespace Cartonization.Business
         /// </summary>
         /// <param name="productsToPack"></param>
         /// <param name="remainingSpace"></param>
-        private void FillSpace(ref List<Product> productsToPack, Space remainingSpace, int level)
+        private void FillSpace(ref List<Product> productsToPack, Space remainingSpace, decimal level)
         {
             if (productsToPack.Count == 0) return;
 
@@ -114,7 +114,7 @@ namespace Cartonization.Business
                 if (!CanFitProductWithThreeDRotation(product, remainingSpace)) continue;
 
                 fittingProduct = product;
-                
+
                 break;
             }
 
@@ -124,44 +124,50 @@ namespace Cartonization.Business
 
             productsToPack.RemoveAll(p => p.ProductId == fittingProduct.ProductId);
 
-            List<Space> availableSpaces = new List<Space>();
+            Dictionary<decimal, List<Space>> availableSpaces = new Dictionary<decimal, List<Space>>();
 
             if (remainingSpace.Length - fittingProduct.Length > 0)
             {
-                availableSpaces.Add(new Space(
-                    new Dimension(
-                        width: remainingSpace.Width,
-                        length: remainingSpace.Length - fittingProduct.Length,
-                        height: remainingSpace.Height
-                        )
-                    ));
+                AddAvailableSpace(level, new Space(
+                        new Dimension(
+                            width: remainingSpace.Width,
+                            length: remainingSpace.Length - fittingProduct.Length,
+                            height: remainingSpace.Height
+                            )
+                        ), availableSpaces
+                    );
             }
 
             if (remainingSpace.Width - fittingProduct.Width > 0)
             {
-                availableSpaces.Add(new Space(
+                AddAvailableSpace(level, new Space(
                     new Dimension(
                         width: remainingSpace.Width - fittingProduct.Width,
                         length: fittingProduct.Length,
                         height: remainingSpace.Height
                         )
-                    ));
+                    ), availableSpaces
+                    );
             }
 
             if (remainingSpace.Height - fittingProduct.Height > 0)
             {
-                availableSpaces.Add(
-                    new Space(new Dimension(
+                AddAvailableSpace(level + 0.1m, new Space(
+                    new Dimension(
                             width: fittingProduct.Width,
                             length: fittingProduct.Length,
                             height: remainingSpace.Height - fittingProduct.Height
                         )
-                    ));
+                    ), availableSpaces
+                    );
             }
 
-            foreach (Space space in availableSpaces)
+            foreach (KeyValuePair<decimal, List<Space>> availableSpace in availableSpaces)
             {
-                FillSpace(ref productsToPack, space, level);
+                foreach (Space space in availableSpace.Value)
+                {
+                    FillSpace(ref productsToPack, space, availableSpace.Key);
+                }
             }
         }
 
@@ -186,7 +192,17 @@ namespace Cartonization.Business
             return false;
         }
 
-        
+        private void AddAvailableSpace(decimal level, Space space, Dictionary<decimal, List<Space>> spaces)
+        {
+            if (spaces.ContainsKey(level))
+            {
+                spaces[level].Add(space);
+            }
+            else
+            {
+                spaces.Add(level, new List<Space>() { space });
+            }
+        }
 
     }
 }

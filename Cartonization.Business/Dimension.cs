@@ -34,7 +34,10 @@ namespace Cartonization.Business
         public IEnumerable<Dimension> RotationAngles()
         {
             List<Dimension> rotations = new List<Dimension>();
-
+            // Add original dimension.
+            rotations.Add(this);
+            
+            // 2D rotate.( swap width and length).
             Dimension d = TwoDRotate();
 
             rotations.Add(d);
