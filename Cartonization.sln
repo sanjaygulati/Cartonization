@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartonization.Business", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartonization.ConsoleApp", "Cartonization.ConsoleApp\Cartonization.ConsoleApp.csproj", "{A3F57E00-6387-4372-94AE-B3FF2774AEB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartonization.Web", "Cartonization.Web\Cartonization.Web.csproj", "{B6C3A1B9-A9AF-4D1C-9E8E-1EB1AF37D6C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3F57E00-6387-4372-94AE-B3FF2774AEB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C3A1B9-A9AF-4D1C-9E8E-1EB1AF37D6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C3A1B9-A9AF-4D1C-9E8E-1EB1AF37D6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C3A1B9-A9AF-4D1C-9E8E-1EB1AF37D6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C3A1B9-A9AF-4D1C-9E8E-1EB1AF37D6C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

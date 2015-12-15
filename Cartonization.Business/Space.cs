@@ -77,7 +77,7 @@ namespace Cartonization.Business
 
         public override string ToString()
         {
-            return "SurfaceArea: " + SurfaceArea + ",Volume: " + Volume +" " + Dimension.ToString();
+            return Dimension.ToString() + " SurfaceArea: " + SurfaceArea + ",Volume: " + Volume;
         }
     }
 }

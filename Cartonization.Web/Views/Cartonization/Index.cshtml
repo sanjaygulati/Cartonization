@@ -1,0 +1,135 @@
+﻿@model Cartonization.Web.Models.CartonizationViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Cartonization</h4>
+	<hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <div>
+        <div class="pull-left col-lg-4">
+            <h4>Products</h4>
+            <table class="table table-striped">
+                    @foreach (Cartonization.Business.Product product in Model.ProductsToPack)
+                    {
+                        <tr>
+                            <td>
+                                @string.Format("Id: {0}, Height {1}, Width: {2}, Length:{3}", product.ProductId, product.Height, product.Width, product.Length)
+                            </td>
+                            <td>
+                                <input id="Product_@product.ProductId" type="button" value="Delete" onclick="deleteProduct(@product.ProductId)" />
+                            </td>
+                        </tr>
+                    }
+            </table>
+        </div>
+        <div class="pull-left  col-lg-4">
+            <h4>Available Cartons</h4>
+            <table class="table table-striped">
+                @foreach (Cartonization.Business.Carton carton in Model.AvailableCartons)
+                {
+                    <tr>
+                        <td>
+                            @string.Format("Id: {0}, Height {1}, Width: {2}, Length:{3}", carton.Id, carton.Height, carton.Width, carton.Length)
+                        </td>
+                        <td class="pull-right">
+                            <input type="button" value="Delete" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="pull-left  col-lg-4">
+            <h4>Find Carton(s)</h4>
+            <input type="button" value="Pack" class="btn-primary active " />
+
+            <div>
+                <h4>Best Fit Cartons</h4>
+                <table class="table table-striped">
+                    @foreach (Cartonization.Business.Carton carton in Model.Response.Cartons)
+                    {
+                        <tr>
+                            <td>
+                                   @string.Format( "CartonID: " + carton.Id )
+                                <br>@string.Format("Products Count: " + carton.ProductsInCarton.Count)   
+                                <br>@string.Format( "Height: {0}, Used Height {1}", carton.Height, carton.UsedHeight )
+                                <br>@string.Format("Used Volume: {0}, Waste Volume {1}", carton.PackedVolume, carton.WasteVolume)
+                                <br>@string.Format("Levels packed: " + carton.LayeredProducts.Keys.Count)
+                                <br>@string.Format("SurfaceAreaUsedPerLevel:" + carton.SurfaceAreaUsedPerLevel())
+                                
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            @if (Model.Response.OversizeProducts.Count > 0)
+            {
+                <div>
+                    <h4>Oversize Products</h4>
+                    <table class="table table-striped">
+                        @foreach (Cartonization.Business.Product product in Model.Response.OversizeProducts)
+                        {
+                            <tr>
+                                <td>
+                                    @string.Format("Id: {0}, Height {1}, Width: {2}, Length:{3}", product.ProductId, product.Height, product.Width, product.Length)
+                                </td>
+                                <td>
+                                    <input type="button" value="Delete" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+            @if (Model.Response.BadDimensionProducts.Count > 0)
+            {
+                <div>
+                    <h4>Bad Dimension Products</h4>
+                    <table class="table table-striped">
+                        @foreach (Cartonization.Business.Product product in Model.Response.BadDimensionProducts)
+                        {
+                            <tr>
+                                <td>
+                                    @string.Format("Id: {0}, Height {1}, Width: {2}, Length:{3}", product.ProductId, product.Height, product.Width, product.Length)
+                                </td>
+                                <td>
+                                    <input type="button" value="Delete" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var deleteProduct = function (id)
+    {
+        $.ajax({
+            url: '/Cartonization/delete/' + id,
+            type: "DELETE",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("" + "#Product_" + id + "").parent().parent().remove()
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    }
+
+</script>
+

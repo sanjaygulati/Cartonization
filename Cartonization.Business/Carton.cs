@@ -88,7 +88,7 @@ namespace Cartonization.Business
             }
         }
 
-        private decimal LevelSurfaceArea( decimal level )
+        public decimal LevelSurfaceArea( decimal level )
         {
             if (_layerdProducts.ContainsKey(level))
             {
@@ -130,8 +130,8 @@ namespace Cartonization.Business
         public override string ToString()
         {
             return "CartoonID: " + Id
-                + ",\nCarton Height: " + Height
-                + ",\nCarton Used Height: " + UsedHeight
+                + ",\nHeight: " + Height
+                + ",\nUsed Height: " + UsedHeight
                 + ",\nLayers packed: " + LayeredProducts.Keys.Count
                 + ",\nProducts Count: " + ProductsInCarton.Count
                 + ",\nUsed Volume: " + PackedVolume
@@ -140,7 +140,7 @@ namespace Cartonization.Business
         }
 
 
-        private string SurfaceAreaUsedPerLevel()
+        public string SurfaceAreaUsedPerLevel()
         {
             StringBuilder stringBuilder = new System.Text.StringBuilder();
 
@@ -148,7 +148,7 @@ namespace Cartonization.Business
 
             foreach(decimal level in LayeredProducts.Keys)
             {
-                stringBuilder.AppendFormat("\nlevelId: {0}, SurfaceAreaUsed {1} , SurfaceAreaWaste: {2}", level, LevelSurfaceArea(level), surfaceArea - LevelSurfaceArea(level));
+                stringBuilder.AppendFormat("\nlevel: {0}, SurfaceAreaUsed {1} , SurfaceAreaWaste: {2}", level, LevelSurfaceArea(level), surfaceArea - LevelSurfaceArea(level));
             }
 
             return stringBuilder.ToString();

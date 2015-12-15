@@ -71,7 +71,7 @@ namespace Cartonization.Business
 
         public override string ToString() 
         {
-            return "ProductId: " + ProductId + "," + Space.ToString();
+            return "ProductId: " + ProductId + ", " + Space.ToString();
         }
     }
 }
