@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cartonization.Business
 {
-    public class Product
+    public class Product : IEquatable<Product>
     {
         public Product(int id ,decimal height, decimal length, decimal width)
         {
@@ -72,6 +72,28 @@ namespace Cartonization.Business
         public override string ToString() 
         {
             return "ProductId: " + ProductId + ", " + Space.ToString();
+        }
+
+        public bool Equals(Product other)
+        {
+            return this.ProductId == other.ProductId;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ProductId.GetHashCode();
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+                return false;
+
+            Product productObj = obj as Product;
+            if (productObj == null)
+                return false;
+            else
+                return Equals(productObj);
         }
     }
 }
