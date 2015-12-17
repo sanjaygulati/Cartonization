@@ -13,7 +13,7 @@ namespace Cartonization.Business
         private Dictionary<decimal, List<Product>> _layerdProducts;
         private decimal _usedHeight;
 
-        public Carton(string id, decimal height, decimal length, decimal width)
+        public Carton(int id, decimal height, decimal length, decimal width)
         {
             Id = id;
             Space = new Space(new Dimension(width, length, height));
@@ -21,7 +21,7 @@ namespace Cartonization.Business
             _layerdProducts = new Dictionary<decimal, List<Product>>();
         }
 
-        public string Id { get; private set; }
+        public int Id { get; private set; }
 
         public Space Space { get; private set; }
 

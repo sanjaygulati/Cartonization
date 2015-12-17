@@ -21,11 +21,11 @@ namespace Cartonization.Web.Services
             {
                 availableCartons = new List<Carton>()
                 {
-                    new Carton("1", 10, 16, 23),
-                    new Carton("2", 16, 23, 30.5m),
-                    new Carton("3", 25, 17, 40),
-                    new Carton("4", 26, 27, 32),
-                    new Carton("5", 27, 32, 47),
+                    new Carton(1, 10, 16, 23),
+                    new Carton(2, 16, 23, 30.5m),
+                    new Carton(3, 25, 17, 40),
+                    new Carton(4, 26, 27, 32),
+                    new Carton(5, 27, 32, 47),
                 };
             }
             return availableCartons;
@@ -37,7 +37,7 @@ namespace Cartonization.Web.Services
 
             if (HttpContext.Current.Session["Products"] != null)
             {
-                availableProducts = HttpContext.Current.Session["Products"] as List<Product>;
+                availableProducts = (HttpContext.Current.Session["Products"] as List<Product>).Select(p=>new Product(p.ProductId, p.Height, p.Length, p.Width)).ToList();
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Cartonization.Web.Services
             return products;
         }
 
-        public List<Carton> DeleteCarton(string cartonID)
+        public List<Carton> DeleteCarton(int cartonID)
         {
             List<Carton> cartons = GetAvailableCartons();
 

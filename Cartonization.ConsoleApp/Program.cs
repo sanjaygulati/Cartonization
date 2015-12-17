@@ -51,8 +51,8 @@ namespace Cartonization.ConsoleApp
 
             List<Carton> availbaleCartons = new List<Carton>()
             {
-                new Carton("carton1", 10, 16, 23),
-                new Carton("carton2", 16, 23, 30.5m),
+                new Carton(1, 10, 16, 23),
+                new Carton(2, 16, 23, 30.5m),
                 //new Carton("carton3", 25, 17, 40),
                 //new Carton("carton4", 26, 27, 32),
                 //new Carton("carton5", 27, 32, 47),

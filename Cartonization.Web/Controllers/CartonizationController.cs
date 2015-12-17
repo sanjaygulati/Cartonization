@@ -63,7 +63,7 @@ namespace Cartonization.Web.Controllers
         {
             CartonizationService service = new CartonizationService();
 
-            int productId = service.GetProducts().Count + 1;
+            int productId = service.GetProducts().Count > 0 ? service.GetProducts().Last().ProductId + 1 : 1;
 
             Product p = new Product(productId, dimensions.Height, dimensions.Length, dimensions.Width);
 
@@ -77,9 +77,9 @@ namespace Cartonization.Web.Controllers
         {
             CartonizationService service = new CartonizationService();
 
-            int cartonId = service.GetAvailableCartons().Count + 1;
+            int cartonId = service.GetAvailableCartons().Count > 0 ? service.GetAvailableCartons().Last().Id + 1 : 1;
 
-            Carton p = new Carton(cartonId.ToString(), dimensions.Height, dimensions.Length, dimensions.Width);
+            Carton p = new Carton(cartonId, dimensions.Height, dimensions.Length, dimensions.Width);
 
             service.AddCarton(p);
 
@@ -87,7 +87,7 @@ namespace Cartonization.Web.Controllers
         }
 
         [HttpDelete]
-        public ActionResult DeleteCarton(string id)
+        public ActionResult DeleteCarton(int id)
         {
             CartonizationService service = new CartonizationService();
 
