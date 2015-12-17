@@ -110,7 +110,7 @@
                 "Width": $("#Width").val()
             }),
             success: function (data) {
-                $('#productsToPack').append("<tr><td>Id: " + data.ProductId + ", Height: " + data.Height + ", Width: " + data.Width + ", Length: " + data.Length + "</td><td><input id=product_" + data.ProductId + " type='button' value='Delete' onclick='deleteProduct(" + data.ProductId + ")'/></td></tr>");
+                $('#productsToPack').append("<tr><td>Id: " + data.ProductId + ", Height: " + data.Height + ", Width: " + data.Width + ", Length: " + data.Length + "</td><td><input id=Product_" + data.ProductId + " type='button' value='Delete' onclick='deleteProduct(" + data.ProductId + ")'/></td></tr>");
             },
             error: function (xhr) {
                 alert('error');
@@ -129,7 +129,7 @@
                 "Width": $("#CartonWidth").val()
             }),
             success: function (data) {
-                $('#AvailableCarton').append("<tr><td>Id: " + data.Id + ", Height: " + data.Height + ", Width: " + data.Width + ", Length: " + data.Length + "</td><td><input id=product_" + data.Id + " type='button' value='Delete' onclick='deleteCarton(" + data.Id + ")'/></td></tr>");
+                $('#AvailableCarton').append("<tr><td>Id: " + data.Id + ", Height: " + data.Height + ", Width: " + data.Width + ", Length: " + data.Length + "</td><td><input id=Carton_" + data.Id + " type='button' value='Delete' onclick='deleteCarton(" + data.Id + ")'/></td></tr>");
             },
             error: function (xhr) {
                 alert('error');
