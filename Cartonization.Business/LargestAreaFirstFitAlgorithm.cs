@@ -109,7 +109,7 @@ namespace Cartonization.Business
             foreach (Product product in productsToPack)
             {
                 // Skip products that have a higher volume than target space.
-                if (product.Space.Volume >= remainingSpace.Volume) continue;
+                if (product.Space.Volume > remainingSpace.Volume) continue;
 
                 if (!CanFitProductWithThreeDRotation(product, remainingSpace)) continue;
 
