@@ -129,14 +129,13 @@ namespace Cartonization.Business
 
         public override string ToString()
         {
-            return "CartoonID: " + Id
-                + ",\nHeight: " + Height
-                + ",\nUsed Height: " + UsedHeight
-                + ",\nLayers packed: " + LayeredProducts.Keys.Count
-                + ",\nProducts Count: " + ProductsInCarton.Count
-                + ",\nUsed Volume: " + PackedVolume
-                + ",\nWasteVolume: " + WasteVolume
-                + ",\nSurfaceAreaUsedPerLevel:" + SurfaceAreaUsedPerLevel();
+            return
+                string.Format("CartonID: " + Id)
+                + string.Format("<br>Products Count: " + ProductsInCarton.Count)
+                + string.Format("<br>Height: Available {0}, Used {1}", Height, UsedHeight)
+                + string.Format("<br>Volume: Used: {0}, Wasted {1}", PackedVolume, WasteVolume)
+                + string.Format("<br>Levels packed: " + LayeredProducts.Keys.Count)
+                + string.Format("<br>SurfaceAreaUsedPerLevel:" + SurfaceAreaUsedPerLevel());
         }
 
 
@@ -148,7 +147,7 @@ namespace Cartonization.Business
 
             foreach(decimal level in LayeredProducts.Keys)
             {
-                stringBuilder.AppendFormat("\nlevel: {0}, SurfaceAreaUsed {1} , SurfaceAreaWaste: {2}", level, LevelSurfaceArea(level), surfaceArea - LevelSurfaceArea(level));
+                stringBuilder.AppendFormat("<br>level: {0}, Used: {1} , Wasted: {2}", level, LevelSurfaceArea(level), surfaceArea - LevelSurfaceArea(level));
             }
 
             return stringBuilder.ToString();

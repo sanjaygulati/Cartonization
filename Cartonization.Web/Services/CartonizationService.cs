@@ -43,26 +43,22 @@ namespace Cartonization.Web.Services
             {
                 availableProducts = new List<Product>()
             {
-                new Product("1",4, 6, 2),
-                new Product("2",3, 7, 4),
-                new Product("3",5, 2, 2),
-                new Product("4",10, 8, 4),
-                new Product("5", 10, 5, 3),
-                new Product("6", 10, 5, 2),
-                new Product("7", 10, 4, 3),
-                new Product("8", 3, 1, 2),
-                new Product("9", 5, 3, 6),
-                new Product("10", 9, 9, 9),
-                new Product("10_1", 8, 7, 4),
-                new Product("10_2", 9, 7, 4),
-                new Product("10_3", 7, 7, 4),
-                new Product("10_4", 6, 7, 4),
+                new Product(1, 4, 6, 2),
+                new Product(2, 3, 7, 4),
+                new Product(3, 5, 2, 2),
+                new Product(4, 10, 8, 4),
+                new Product(5, 10, 5, 3),
+                new Product(6, 10, 5, 2),
+                new Product(7, 10, 4, 3),
+                new Product(8, 3, 1, 2),
+                new Product(9, 5, 3, 6),
+                new Product(10, 9, 9, 9),
                 };
             }
             return availableProducts;
         }
 
-        public List<Product> DeleteProduct(string productID)
+        public List<Product> DeleteProduct(int productID)
         {
             List<Product> products = GetProducts();
 

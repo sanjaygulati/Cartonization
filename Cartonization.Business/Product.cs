@@ -8,7 +8,7 @@ namespace Cartonization.Business
 {
     public class Product
     {
-        public Product(string id ,decimal height, decimal length, decimal width)
+        public Product(int id ,decimal height, decimal length, decimal width)
         {
             decimal[] array = new[] {height, width, length};
             decimal[] result = array.OrderByDescending(d => d).ToArray();
@@ -18,7 +18,7 @@ namespace Cartonization.Business
             ProductId = id;
         }
 
-        public string ProductId { get; private set; }
+        public int ProductId { get; private set; }
 
         public Space Space { get; private set; }
 

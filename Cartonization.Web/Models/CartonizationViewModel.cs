@@ -15,4 +15,11 @@ namespace Cartonization.Web.Models
         public PackerResponse Response { get; set; }
 
     }
+
+    public class DimensionsViewModel
+    {
+        public decimal Length { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
+    }
 }

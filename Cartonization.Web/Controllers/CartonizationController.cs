@@ -4,8 +4,10 @@ using Cartonization.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Cartonization.Web.Controllers
 {
@@ -13,6 +15,7 @@ namespace Cartonization.Web.Controllers
     {
         //
         // GET: /Cartonization/
+        [HttpGet]
         public ActionResult Index()
         {
             var service = new CartonizationService();
@@ -24,97 +27,81 @@ namespace Cartonization.Web.Controllers
 
             return View(model);
         }
-
-        //
-        // GET: /Cartonization/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Cartonization/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Cartonization/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Cartonization/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
+        
         //
         // POST: /Cartonization/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, decimal h, decimal l, decimal w)
         {
-            try
-            {
-                // TODO: Add update logic here
+            CartonizationService service = new CartonizationService();
+            List<Product> products = service.GetProducts();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            Product product = products.FirstOrDefault(p => p.ProductId == id);
+
+            if (product != null)
             {
-                return View();
+                products.RemoveAll(p => p.ProductId == id);
+                Product newProduct = new Product(id, h,l,w);
+                products.Add(product);
+                service.AddProduct(newProduct);
             }
+            return Json(products);
         }
 
         //
         // GET: /Cartonization/Delete/5
         [HttpDelete]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             CartonizationService service = new CartonizationService();
 
             return Json(service.DeleteProduct(id), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddProduct(string sku, decimal h, decimal l, decimal w)
+        [HttpPost]
+        public ActionResult AddProduct(DimensionsViewModel dimensions)
         {
-            Product p = new Product(sku, h, l, w);
-
             CartonizationService service = new CartonizationService();
 
-            return Json(service.AddProduct(p));
+            int productId = service.GetProducts().Count + 1;
+
+            Product p = new Product(productId, dimensions.Height, dimensions.Length, dimensions.Width);
+
+            service.AddProduct(p);
+
+            return Json(p);
         }
 
-
-        //
-        // POST: /Cartonization/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult AddCarton(DimensionsViewModel dimensions)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            CartonizationService service = new CartonizationService();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            int cartonId = service.GetAvailableCartons().Count + 1;
+
+            Carton p = new Carton(cartonId.ToString(), dimensions.Height, dimensions.Length, dimensions.Width);
+
+            service.AddCarton(p);
+
+            return Json(p);
         }
+
+        [HttpDelete]
+        public ActionResult DeleteCarton(string id)
+        {
+            CartonizationService service = new CartonizationService();
+
+            return Json(service.DeleteCarton(id), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult Pack()
+        {
+            CartonizationService service = new CartonizationService();
+
+            return PartialView("PackerResponse", service.Pack());
+        }
+
+
     }
 }

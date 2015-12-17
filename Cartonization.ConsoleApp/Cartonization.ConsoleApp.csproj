@@ -51,6 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Cartonization.Business\Cartonization.Business.csproj">
       <Project>{01cbb486-5b87-4f79-8a2c-827ac1c0dcbc}</Project>
       <Name>Cartonization.Business</Name>

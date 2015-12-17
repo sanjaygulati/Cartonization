@@ -41,6 +41,11 @@ namespace Cartonization.Business
 
         public PackerResponse Pack(List<Product> products)
         {
+            if (products.Count == 0 || _availableCartons.Count == 0)
+            {
+                return new PackerResponse();
+            }
+
             products.ForEach(product =>
             {
                 if (product.Height <= 0 || product.Width <= 0 || product.Length <= 0)
