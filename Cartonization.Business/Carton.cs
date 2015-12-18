@@ -123,7 +123,7 @@ namespace Cartonization.Business
 
         public bool CanAddProductWithoutHeightOverflow(Product product)
         {
-            return _usedHeight + product.Height < Space.Dimension.Height;
+            return _usedHeight + product.Height <= Space.Dimension.Height;
         }
 
 
